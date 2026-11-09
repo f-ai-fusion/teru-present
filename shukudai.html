@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宿題ヒントプロンプト｜えふ。｜AI初心者フクロウ先生</title>
+<style>
+:root {
+  --background:#BFAE99; --paper:#FFFFFF; --ink:#212529;
+  --heading:#2A1F15; --sub:#495057; --accent:#D97454;
+  --accent-text:#A8472A; --button:#B4532F; --button-hover:#963F22;
+  --light:#FAF7F2; --panel:#F7F7F7; --highlight:#FDF6F0;
+  --line:#E9DDD1; --radius:20px; --small-radius:12px;
+  --warm-gradient:linear-gradient(110deg,#EC9067 0%,#D87655 54%,#CB5933 100%);
+  --shadow:0 8px 24px rgb(42 31 21 / 7%);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--background); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; font-size:16px; line-height:1.95; letter-spacing:.015em; }
+.wrap { max-width:840px; margin:0 auto; padding:0 32px 40px; }
+.hero { margin:0 0 28px; }
+.brand { margin:0 -32px 28px; padding:15px 30px; background:linear-gradient(100deg,#B4532F,#963F22); color:var(--paper); font-size:13px; font-weight:600; line-height:1.9; letter-spacing:.015em; }
+.title-panel { position:relative; isolation:isolate; overflow:hidden; background:var(--warm-gradient); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); }
+.title-panel:before,.title-panel:after { content:""; position:absolute; z-index:-1; pointer-events:none; border:1px solid rgb(255 255 255 / 60%); background:linear-gradient(145deg,rgb(255 255 255 / 75%),rgb(255 255 255 / 5%)); border-radius:50%; width:220px; height:110px; transform:rotate(-20deg); }
+.title-panel:before { top:-75px; left:-40px; }
+.title-panel:after { bottom:-73px; right:-40px; }
+h1 { position:relative; background:var(--paper); color:var(--heading); margin:0; padding:30px 20px 26px; border-radius:18px; box-shadow:0 6px 15px rgb(92 42 19 / 13%); font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif; font-size:39px; font-weight:800; line-height:1.5; text-align:center; letter-spacing:.02em; }
+.title-unit { display:inline-block; }
+.title-note { display:table; margin:14px auto 0; padding:3px 17px; border:1px solid var(--line); border-radius:999px; color:var(--accent-text); background:var(--highlight); font-family:"Hiragino Sans",sans-serif; font-size:14px; font-weight:600; letter-spacing:.03em; }
+.intro { margin:25px 0 0; font-size:16px; color:var(--ink); line-height:2; }
+.free-note { background:var(--paper); border:1px solid var(--line); border-radius:var(--small-radius); padding:19px 22px; margin:22px 0 0; color:var(--sub); font-size:14px; line-height:1.95; box-shadow:var(--shadow); }
+.free { display:table; margin-bottom:9px; padding:3px 12px; border-radius:999px; background:var(--highlight); color:var(--accent-text); font-size:13px; font-weight:700; }
+.label-separator,.template-leading { display:none; }
+.template-section,.steps-section { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:27px; }
+h2 { display:flex; align-items:center; gap:12px; padding:14px 16px; margin:-27px -27px 24px; border-bottom:1px solid var(--line); border-radius:var(--radius) var(--radius) 0 0; background:var(--highlight); color:var(--heading); font-size:18px; font-weight:700; line-height:1.8; letter-spacing:0; }
+h2:before { content:"01"; flex:0 0 auto; display:grid; place-items:center; min-width:36px; height:30px; padding:0 6px; border:1px solid var(--line); border-radius:9px; background:var(--paper); color:var(--accent-text); font-family:Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:.04em; }
+.heading-note { display:inline-block; font-size:13px; font-weight:500; }
+.template-shell { padding:0; border:1px solid var(--line); border-radius:var(--small-radius); overflow:hidden; }
+.template { padding:23px; background:var(--panel); border-radius:var(--small-radius); white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; line-height:1.95; letter-spacing:0; outline-offset:-3px; }
+.template:focus { outline:2px solid var(--accent-text); }
+.copy-area { margin:20px 0 0; }
+button { display:flex; align-items:center; justify-content:center; width:100%; min-height:56px; padding:15px 18px; border:1px solid transparent; border-radius:999px; background:var(--button); color:var(--paper); font-family:inherit; font-size:16px; font-weight:700; line-height:1.6; letter-spacing:.02em; box-shadow:0 5px 12px rgb(180 83 47 / 20%); cursor:pointer; touch-action:manipulation; transition:background .15s,box-shadow .15s; }
+button:hover { background:var(--button-hover); box-shadow:0 6px 15px rgb(180 83 47 / 25%); }
+button:focus-visible { outline:3px solid var(--heading); outline-offset:4px; }
+button:disabled { cursor:wait; opacity:.8; }
+.copy-feedback { min-height:27px; margin:8px 0 0; color:var(--accent-text); text-align:center; font-size:13px; line-height:1.8; letter-spacing:0; }
+.copy-feedback:not(:empty) { display:flex; align-items:flex-start; justify-content:center; gap:7px; padding:10px 12px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--highlight); }
+.copy-feedback:not(:empty):before { content:"✓"; flex:0 0 auto; font-weight:700; }
+.copy-feedback[data-state="manual"] { color:var(--heading); background:var(--light); border-color:#BFAE99; }
+.copy-feedback[data-state="manual"]:before { content:"↳"; }
+.steps-section { margin-top:28px; }
+.steps-section h2:before { content:"02"; }
+.step { display:flex; gap:16px; margin:0; padding:22px 0; border-bottom:1px solid var(--line); }
+.step:first-of-type { padding-top:0; }
+.step:last-child { border:0; padding-bottom:0; }
+.num { flex:0 0 36px; display:grid; place-items:center; height:36px; border-radius:50%; background:var(--highlight); color:var(--accent-text); border:1px solid var(--line); font-family:Arial,sans-serif; font-size:15px; font-weight:700; line-height:1; }
+.step-content { min-width:0; flex:1; color:var(--ink); font-size:16px; line-height:1.95; }
+.step b { display:block; color:var(--heading); font-size:17px; line-height:1.8; margin-bottom:6px; font-weight:700; }
+.step b + br,.setting-path + br { display:none; }
+.setting-path { display:block; padding:11px 13px; margin-top:8px; border:1px solid var(--line); border-radius:10px; background:var(--light); color:var(--sub); font-size:14px; line-height:1.9; overflow-wrap:anywhere; }
+.app-name { color:var(--accent-text); font-weight:700; }
+.card { margin:28px 0 22px; padding:25px 27px; border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); color:var(--ink); font-size:14px; line-height:2; }
+.card b { display:inline-block; margin-bottom:13px; color:var(--heading); font-size:18px; font-weight:700; }
+.summary-items { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; margin:0 0 12px; }
+.summary-items span { display:block; font-size:14px; font-weight:600; line-height:2; }
+.summary-items .summary-separator { display:none; }
+.small { margin:0; padding:19px 22px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--light); color:var(--sub); font-size:13px; line-height:1.95; overflow-wrap:anywhere; }
+@media(min-width:860px) { .wrap { padding-top:24px; } .brand { border-radius:12px; margin:0 0 28px; } .title-panel { padding:36px; } h1 { font-size:44px; padding:34px 20px; } .intro { margin-top:28px; } .summary-items { display:flex; gap:0 22px; } }
+@media(max-width:560px) {
+  .wrap { padding:0 16px 28px; }
+  .brand { margin:0 -16px 22px; padding:13px 18px; font-size:13px; line-height:1.9; letter-spacing:0; }
+  .hero { margin-bottom:22px; }
+  .title-panel { padding:20px 15px; border-radius:16px; }
+  h1 { padding:24px 12px 22px; border-radius:13px; font-size:30px; line-height:1.5; letter-spacing:.01em; }
+  .title-note { font-size:13px; margin-top:12px; padding:3px 13px; }
+  .intro { margin-top:22px; font-size:16px; line-height:1.95; letter-spacing:0; }
+  .free-note { padding:17px 18px; margin-top:19px; font-size:13px; line-height:1.95; letter-spacing:0; }
+  .template-section,.steps-section { padding:19px; border-radius:16px; }
+  h2 { margin:-19px -19px 19px; padding:14px 14px; gap:9px; font-size:16px; border-radius:16px 16px 0 0; line-height:1.8; }
+  h2:before { min-width:31px; height:29px; font-size:13px; }
+  .template { padding:15px 14px 18px; font-size:16px; line-height:1.9; }
+  .copy-area { margin-top:17px; }
+  button { min-height:56px; padding:15px 10px; font-size:15px; letter-spacing:0; }
+  .steps-section { margin-top:22px; }
+  .step { gap:11px; padding:20px 0; }
+  .num { flex-basis:31px; height:31px; font-size:14px; }
+  .step b { font-size:15px; }
+  .setting-path { padding:10px 11px; font-size:14px; }
+  .card { margin:22px 0 20px; padding:21px 20px; border-radius:16px; font-size:13px; }
+  .card b { font-size:17px; margin-bottom:12px; }
+  .small { padding:17px 18px; font-size:13px; line-height:2; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } button { transition:none; } }
+@media print { body { background:white; } .wrap { max-width:none; padding:0; } button,.copy-feedback { display:none; } .hero,.template-section,.step,.card { break-inside:avoid; } .template-section,.steps-section,.card { box-shadow:none; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<p class="brand">🦉 えふ。｜AI初心者フクロウ先生 からのプレゼント</p>
+<div class="title-panel"><h1><span class="title-unit">宿題ヒント</span><span class="title-unit">プロンプト</span><span class="title-note">（答えを言わない先生にする一言）</span></h1></div>
+<p class="intro">子どもの宿題の「わかんない！」、毎回親が答えていませんか？<br>
+宿題の写真といっしょに、この文を送るだけ。<br>
+ChatGPTが答えを言わずに、ヒントを1つずつ出してくれます。子どもが自分で考えて解けるようになります。</p>
+<p class="free-note"><span class="free">無料プランで使えます</span><span class="label-separator" aria-hidden="true">　</span>ChatGPTの無料プランでも、写真を送って使えます（無料プランは使える回数に上限があります）。</p>
+
+</header>
+<section class="template-section">
+<h2><span>プロンプト<span class="heading-note">（コピーして使ってください）</span></span></h2>
+<div class="template-shell"><div class="template" id="tpl" tabindex="-1"><span class="template-leading" hidden aria-hidden="true">
+</span>この写真は、子どもの宿題です。子どもは小学（　）年生です。
+答えは言わずに、ヒントを1つずつ出してください。
+・まず、どこが分からないかを子どもに聞く
+・子どもが答えたら、合っているか・おしいかを短く伝える
+・まちがえたら、答えではなく次のヒントを1つだけ出す
+・小学生にも分かる言葉で、1回の返事は短く
+・正解したら、ほめて、どう考えたかを一言でふり返る</div></div>
+<p class="copy-area"><button id="copy-button" type="button" onclick="copyTpl()">📋 プロンプトをコピーする</button></p>
+<p class="copy-feedback" id="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+</section>
+
+<section class="steps-section"><h2>使い方（3ステップ）</h2>
+<div class="step"><div class="num">1</div><div class="step-content"><b>宿題の写真を1枚撮る</b><br>分からない問題が、はっきり読めるように撮ってください</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>写真とプロンプトをいっしょに送る</b><br><span class="setting-path"><span class="app-name">ChatGPT</span> → 入力欄の「＋」→ 写真を選ぶ → プロンプトを貼って送信</span></div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>あとは子どもがChatGPTと話す</b><br>（　）に学年を入れておくと、言葉の難しさが合います。親がやるのは最後の丸つけだけ</div></div>
+
+</section>
+<div class="card">
+<b>うまくいくコツ</b><br>
+<span class="summary-items"><span class="summary-item">① 「答えは言わずに」を必ず入れる</span><span class="summary-separator" aria-hidden="true">　</span><span class="summary-item">② 1問ずつ聞く（まとめて送らない）</span></span>
+途中で答えを言いそうになったら「答えは言わないで、ヒントだけ」と送れば戻ってくれます。
+</div>
+
+<p class="small">※ AIは問題を読みまちがえたり、計算をまちがえたりすることがあります。最後の丸つけは、親が教科書や答えで確かめてください。<br>
+※ このページは @f_ai_fusion（えふ。｜AI初心者フクロウ先生）の特典ページです。</p>
+</div>
+<script>
+
+function legacyCopy(text) {
+  var input = document.createElement('textarea');
+  input.value = text;
+  input.setAttribute('readonly', '');
+  input.setAttribute('aria-hidden', 'true');
+  input.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;font-size:16px;';
+  document.body.appendChild(input);
+  var active = document.activeElement;
+  var x = window.scrollX, y = window.scrollY;
+  var copied = false;
+  try {
+    input.focus();
+    input.select();
+    input.setSelectionRange(0, input.value.length);
+    copied = document.execCommand('copy');
+  } catch (error) {
+    copied = false;
+  } finally {
+    input.remove();
+    if (active && active.focus) active.focus({preventScroll:true});
+    window.scrollTo(x, y);
+  }
+  return copied;
+}
+
+async function copyTpl() {
+  var template = document.getElementById('tpl');
+  var button = document.getElementById('copy-button');
+  var status = document.getElementById('copy-status');
+  var text = template.textContent.replace(/^\r?\n/, '');
+  var copied = false;
+  button.disabled = true;
+  status.textContent = '';
+  status.removeAttribute('data-state');
+  try {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch (error) {
+        copied = legacyCopy(text);
+      }
+    } else {
+      copied = legacyCopy(text);
+    }
+  } finally {
+    button.disabled = false;
+  }
+  if (copied) {
+    status.dataset.state = 'success';
+    status.textContent = 'コピーしました。宿題の写真といっしょにChatGPTに貼ってください';
+  } else {
+    var range = document.createRange();
+    range.selectNodeContents(template);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    template.focus();
+    status.dataset.state = 'manual';
+    status.textContent = '長押ししてコピーしてください';
+  }
+}
+
+</script>
+</body>
+</html>
