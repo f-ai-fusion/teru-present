@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 神機能7つの入れ方まとめ｜えふ。｜AI初心者フクロウ先生</title>
+<style>
+:root {
+  --background:#BFAE99; --paper:#FFFFFF; --ink:#212529;
+  --heading:#2A1F15; --sub:#495057; --accent:#D97454;
+  --accent-text:#A8472A; --button:#B4532F; --button-hover:#963F22;
+  --light:#FAF7F2; --panel:#F7F7F7; --highlight:#FDF6F0;
+  --line:#E9DDD1; --radius:20px; --small-radius:12px;
+  --warm-gradient:linear-gradient(110deg,#EC9067 0%,#D87655 54%,#CB5933 100%);
+  --shadow:0 8px 24px rgb(42 31 21 / 7%);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--background); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; font-size:16px; line-height:1.95; letter-spacing:.015em; }
+.wrap { max-width:840px; margin:0 auto; padding:0 32px 40px; }
+.hero { margin:0 0 28px; }
+.brand { margin:0 -32px 28px; padding:15px 30px; background:linear-gradient(100deg,#B4532F,#963F22); color:var(--paper); font-size:13px; font-weight:600; line-height:1.9; letter-spacing:.015em; }
+.title-panel { position:relative; isolation:isolate; overflow:hidden; background:var(--warm-gradient); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); }
+.title-panel:before,.title-panel:after { content:""; position:absolute; z-index:-1; pointer-events:none; border:1px solid rgb(255 255 255 / 60%); background:linear-gradient(145deg,rgb(255 255 255 / 75%),rgb(255 255 255 / 5%)); border-radius:50%; width:220px; height:110px; transform:rotate(-20deg); }
+.title-panel:before { top:-75px; left:-40px; }
+.title-panel:after { bottom:-73px; right:-40px; }
+h1 { position:relative; background:var(--paper); color:var(--heading); margin:0; padding:30px 20px 26px; border-radius:18px; box-shadow:0 6px 15px rgb(92 42 19 / 13%); font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif; font-size:39px; font-weight:800; line-height:1.5; text-align:center; letter-spacing:.02em; }
+.title-unit { display:inline-block; }
+.title-note { display:table; margin:14px auto 0; padding:3px 17px; border:1px solid var(--line); border-radius:999px; color:var(--accent-text); background:var(--highlight); font-family:"Hiragino Sans",sans-serif; font-size:14px; font-weight:600; letter-spacing:.03em; }
+.intro { margin:25px 0 0; font-size:16px; color:var(--ink); line-height:2; }
+.free-note { background:var(--paper); border:1px solid var(--line); border-radius:var(--small-radius); padding:19px 22px; margin:22px 0 0; color:var(--sub); font-size:14px; line-height:1.95; box-shadow:var(--shadow); }
+.free { display:table; margin-bottom:9px; padding:3px 12px; border-radius:999px; background:var(--highlight); color:var(--accent-text); font-size:13px; font-weight:700; }
+.label-separator,.template-leading { display:none; }
+.template-section,.steps-section { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:27px; }
+h2 { display:flex; align-items:center; gap:12px; padding:14px 16px; margin:-27px -27px 24px; border-bottom:1px solid var(--line); border-radius:var(--radius) var(--radius) 0 0; background:var(--highlight); color:var(--heading); font-size:18px; font-weight:700; line-height:1.8; letter-spacing:0; }
+h2:before { content:"01"; flex:0 0 auto; display:grid; place-items:center; min-width:36px; height:30px; padding:0 6px; border:1px solid var(--line); border-radius:9px; background:var(--paper); color:var(--accent-text); font-family:Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:.04em; }
+.heading-note { display:inline-block; font-size:13px; font-weight:500; }
+.template-shell { padding:0; border:1px solid var(--line); border-radius:var(--small-radius); overflow:hidden; }
+.template { padding:23px; background:var(--panel); border-radius:var(--small-radius); white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; line-height:1.95; letter-spacing:0; outline-offset:-3px; }
+.template:focus { outline:2px solid var(--accent-text); }
+.copy-area { margin:20px 0 0; }
+button { display:flex; align-items:center; justify-content:center; width:100%; min-height:56px; padding:15px 18px; border:1px solid transparent; border-radius:999px; background:var(--button); color:var(--paper); font-family:inherit; font-size:16px; font-weight:700; line-height:1.6; letter-spacing:.02em; box-shadow:0 5px 12px rgb(180 83 47 / 20%); cursor:pointer; touch-action:manipulation; transition:background .15s,box-shadow .15s; }
+button:hover { background:var(--button-hover); box-shadow:0 6px 15px rgb(180 83 47 / 25%); }
+button:focus-visible { outline:3px solid var(--heading); outline-offset:4px; }
+button:disabled { cursor:wait; opacity:.8; }
+.copy-feedback { min-height:27px; margin:8px 0 0; color:var(--accent-text); text-align:center; font-size:13px; line-height:1.8; letter-spacing:0; }
+.copy-feedback:not(:empty) { display:flex; align-items:flex-start; justify-content:center; gap:7px; padding:10px 12px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--highlight); }
+.copy-feedback:not(:empty):before { content:"✓"; flex:0 0 auto; font-weight:700; }
+.copy-feedback[data-state="manual"] { color:var(--heading); background:var(--light); border-color:#BFAE99; }
+.copy-feedback[data-state="manual"]:before { content:"↳"; }
+.steps-section { margin-top:28px; }
+.steps-section h2:before { content:"02"; }
+.step { display:flex; gap:16px; margin:0; padding:22px 0; border-bottom:1px solid var(--line); }
+.step:first-of-type { padding-top:0; }
+.step:last-child { border:0; padding-bottom:0; }
+.num { flex:0 0 36px; display:grid; place-items:center; height:36px; border-radius:50%; background:var(--highlight); color:var(--accent-text); border:1px solid var(--line); font-family:Arial,sans-serif; font-size:15px; font-weight:700; line-height:1; }
+.step-content { min-width:0; flex:1; color:var(--ink); font-size:16px; line-height:1.95; }
+.step b { display:block; color:var(--heading); font-size:17px; line-height:1.8; margin-bottom:6px; font-weight:700; }
+.step b + br,.setting-path + br { display:none; }
+.setting-path { display:block; padding:11px 13px; margin-top:8px; border:1px solid var(--line); border-radius:10px; background:var(--light); color:var(--sub); font-size:14px; line-height:1.9; overflow-wrap:anywhere; }
+.app-name { color:var(--accent-text); font-weight:700; }
+.card { margin:28px 0 22px; padding:25px 27px; border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); color:var(--ink); font-size:14px; line-height:2; }
+.card b { display:inline-block; margin-bottom:13px; color:var(--heading); font-size:18px; font-weight:700; }
+.summary-items { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; margin:0 0 12px; }
+.summary-items span { display:block; font-size:14px; font-weight:600; line-height:2; }
+.summary-items .summary-separator { display:none; }
+.small { margin:0; padding:19px 22px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--light); color:var(--sub); font-size:13px; line-height:1.95; overflow-wrap:anywhere; }
+@media(min-width:860px) { .wrap { padding-top:24px; } .brand { border-radius:12px; margin:0 0 28px; } .title-panel { padding:36px; } h1 { font-size:44px; padding:34px 20px; } .intro { margin-top:28px; } .summary-items { display:flex; gap:0 22px; } }
+@media(max-width:560px) {
+  .wrap { padding:0 16px 28px; }
+  .brand { margin:0 -16px 22px; padding:13px 18px; font-size:13px; line-height:1.9; letter-spacing:0; }
+  .hero { margin-bottom:22px; }
+  .title-panel { padding:20px 15px; border-radius:16px; }
+  h1 { padding:24px 12px 22px; border-radius:13px; font-size:30px; line-height:1.5; letter-spacing:.01em; }
+  .title-note { font-size:13px; margin-top:12px; padding:3px 13px; }
+  .intro { margin-top:22px; font-size:16px; line-height:1.95; letter-spacing:0; }
+  .free-note { padding:17px 18px; margin-top:19px; font-size:13px; line-height:1.95; letter-spacing:0; }
+  .template-section,.steps-section { padding:19px; border-radius:16px; }
+  h2 { margin:-19px -19px 19px; padding:14px 14px; gap:9px; font-size:16px; border-radius:16px 16px 0 0; line-height:1.8; }
+  h2:before { min-width:31px; height:29px; font-size:13px; }
+  .template { padding:15px 14px 18px; font-size:16px; line-height:1.9; }
+  .copy-area { margin-top:17px; }
+  button { min-height:56px; padding:15px 10px; font-size:15px; letter-spacing:0; }
+  .steps-section { margin-top:22px; }
+  .step { gap:11px; padding:20px 0; }
+  .num { flex-basis:31px; height:31px; font-size:14px; }
+  .step b { font-size:15px; }
+  .setting-path { padding:10px 11px; font-size:14px; }
+  .card { margin:22px 0 20px; padding:21px 20px; border-radius:16px; font-size:13px; }
+  .card b { font-size:17px; margin-bottom:12px; }
+  .small { padding:17px 18px; font-size:13px; line-height:2; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } button { transition:none; } }
+@media print { body { background:white; } .wrap { max-width:none; padding:0; } button,.copy-feedback { display:none; } .hero,.template-section,.step,.card { break-inside:avoid; } .template-section,.steps-section,.card { box-shadow:none; } }
+
+
+/* 神機能7つ用（2026-11-11 追加） */
+.steps-section h2:before { content:attr(data-n); }
+.how h2,.tool h2 { flex-wrap:wrap; row-gap:0; }
+.how h2 .heading-note,.tool h2 .heading-note { flex-basis:100%; }
+.what { margin:0 0 18px; color:var(--sub); font-size:15px; line-height:1.95; }
+.src { margin:18px 0 0; padding-top:12px; border-top:1px dashed var(--line); color:var(--sub); font-size:12px; overflow-wrap:anywhere; }
+code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; background:var(--highlight); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+.cmd { display:flex; align-items:stretch; margin:8px 0 10px; border-radius:10px; overflow:hidden; background:#2A1F15; }
+.cmd code { flex:1; min-width:0; display:block; padding:12px 13px; background:none; border:0; border-radius:0; color:#FDF6F0; font-size:14px; line-height:1.7; overflow-wrap:anywhere; word-break:break-all; }
+.cmd .mini { flex:0 0 auto; width:auto; min-height:0; margin:0; padding:0 15px; border-radius:0; box-shadow:none; background:var(--button); font-size:13px; letter-spacing:0; }
+.cmd .mini:hover { background:var(--button-hover); box-shadow:none; }
+.steps-section + .steps-section { margin-top:22px; }
+.toast { position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); margin:0; padding:10px 18px; border-radius:999px; background:var(--heading); color:var(--paper); font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; white-space:nowrap; }
+.toast.on { opacity:1; transform:translate(-50%,0); }
+@media(max-width:560px) { .cmd code { font-size:13px; padding:11px; } .cmd .mini { padding:0 11px; } .what { font-size:14px; } }
+@media(prefers-reduced-motion:reduce) { .toast { transition:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<p class="brand">🦉 えふ。｜AI初心者フクロウ先生 からのプレゼント</p>
+<div class="title-panel"><h1><span class="title-unit">Claude Code</span><span class="title-unit">神機能7つの</span><span class="title-unit">入れ方まとめ</span><span class="title-note">（リールで紹介した7つ）</span></h1></div>
+<p class="intro">リールで紹介した7つの、入れ方と最初の使い方をまとめました。<br>
+黒い枠の文は、右の「コピー」を押して、そのまま貼り付けられます。<br>
+気になるものを1つ選んで、そこから試してみてください。</p>
+<p class="free-note"><span class="free">はじめに</span><span class="label-separator" aria-hidden="true">　</span>Claude Code は、Claude の有料プラン（Pro 以上）で使えます。7つの道具そのものは無料で入れられます（⑤は、調べる場所を増やすときだけ追加の設定があります）。</p>
+</header>
+
+<section class="steps-section how">
+<h2 data-n="★">どこに貼るの？<span class="heading-note">（最初に読んでください）</span></h2>
+<div class="step"><div class="num">A</div><div class="step-content"><b>「/」で始まる文 → Claude Code の入力欄</b><br>Mac の「ターミナル」で <code>claude</code> と入れて起動した画面に貼って、Enter。</div></div>
+<div class="step"><div class="num">B</div><div class="step-content"><b>それ以外の文 → ターミナル</b><br>Claude Code を起動する前の、ふつうのターミナルの画面に貼って、Enter。</div></div>
+<div class="step"><div class="num">C</div><div class="step-content"><b>入れたあとは、Claude Code を開き直す</b><br>入力欄に <code>/exit</code> と入れて閉じ、もう一度 <code>claude</code> で起動すると、新しい道具が使えるようになります。</div></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="1">frontend-design<span class="heading-note">（Anthropic 公式のプラグイン）</span></h2>
+<p class="what">ページや画面を作るときに、ありきたりな見た目にならないように、色・文字・配置を考えて作ってもらうための道具です。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Claude Code の入力欄に貼る</b><div class="cmd"><code>/plugin install frontend-design@claude-plugins-official</code><button type="button" class="mini">コピー</button></div>確認の画面が出たら、そのまま入れる方を選びます。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>使い方</b>「〇〇のページを作って」とふつうに頼むと、ページ作りのときに自動で使われます。</div></div>
+<p class="src">出どころ：github.com/anthropics/claude-plugins-official</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="2">Pixel Agents<span class="heading-note">（働くAIがドット絵の事務所に出てくる）</span></h2>
+<p class="what">Claude Code が作業しているあいだ、その様子をドット絵のキャラクターで見せてくれる道具です。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>ターミナルに貼る</b><div class="cmd"><code>npx pixel-agents</code><button type="button" class="mini">コピー</button></div>Node.js（20以上）が必要です。入っていないと言われたら、nodejs.org から入れてください。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>出てきたアドレスを開く</b>ターミナルに表示された「http://127.0.0.1:…」のアドレスを、ブラウザで開きます。別の画面で Claude Code を動かすと、キャラクターが現れます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>VS Code を使っている人は</b>VS Code の拡張機能で「Pixel Agents」を探して入れる方法もあります（VS Code 1.105.0 以上）。</div></div>
+<p class="src">出どころ：github.com/pixel-agents-hq/pixel-agents</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="3">3Dコネクター（MCP for Blender）<span class="heading-note">（言葉で3Dを作る）</span></h2>
+<p class="what">無料の3Dソフト「Blender」と Claude をつないで、言葉で頼んだものを Blender の中に作ってもらうための道具です。手順が少し多いので、最後に回してもOKです。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Blender を入れる</b>blender.org から無料で入れられます（3.0 以上）。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>uv を入れる（ターミナルに貼る）</b><div class="cmd"><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code><button type="button" class="mini">コピー</button></div>uv の公式の入れ方です。終わったら、ターミナルを一度閉じて開き直します。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>Claude Code とつなぐ（ターミナルに貼る）</b><div class="cmd"><code>claude mcp add blender uvx mcp-for-blender</code><button type="button" class="mini">コピー</button></div></div></div>
+<div class="step"><div class="num">4</div><div class="step-content"><b>Blender 側の部品を入れる（ターミナルに貼る）</b><div class="cmd"><code>uvx mcp-for-blender install-addon</code><button type="button" class="mini">コピー</button></div><span class="setting-path"><span class="app-name">Blender</span> → Edit → Preferences → Add-ons →「Interface: MCP for Blender」をオン</span></div></div>
+<div class="step"><div class="num">5</div><div class="step-content"><b>つながったか確かめる</b>Blender の画面で <code>N</code> キー →「MCP for Blender」のタブを開きます。動いていなければ「Start MCP Server」を押します。あとは Claude Code に「Blenderで〇〇を作って」と頼みます。</div></div>
+<p class="src">出どころ：github.com/ahujasid/blender-mcp</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="4">claude-mem<span class="heading-note">（前の話を覚えておく）</span></h2>
+<p class="what">Claude Code でやったことを記録しておき、次に開いたときに前の作業の続きを思い出せるようにする道具です。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Claude Code の入力欄に、1行ずつ貼る</b><div class="cmd"><code>/plugin marketplace add thedotmack/claude-mem</code><button type="button" class="mini">コピー</button></div><div class="cmd"><code>/plugin install claude-mem</code><button type="button" class="mini">コピー</button></div></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>ターミナルから入れる方法もあります</b><div class="cmd"><code>npx claude-mem install</code><button type="button" class="mini">コピー</button></div>Node.js（20.19 以上、または 22.12 以上）が必要です。「npm install -g claude-mem」では入らないので注意。</div></div>
+<p class="src">出どころ：github.com/thedotmack/claude-mem</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="5">last30days<span class="heading-note">（この30日の話題を調べる）</span></h2>
+<p class="what">調べたい言葉について、ここ30日のあいだにネットで話題になった投稿を集めて、出どころつきでまとめてくれる道具です。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Claude Code の入力欄に、1行ずつ貼る</b><div class="cmd"><code>/plugin marketplace add mvanhorn/last30days-skill</code><button type="button" class="mini">コピー</button></div><div class="cmd"><code>/plugin install last30days</code><button type="button" class="mini">コピー</button></div></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>使い方</b><div class="cmd"><code>/last30days 調べたいこと</code><button type="button" class="mini">コピー</button></div>「調べたいこと」を書きかえて送ります。最初の1回は、設定の案内が出ます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>そのままで調べられる場所</b>設定なしで Reddit・Hacker News・GitHub などが使えます。X・YouTube・Instagram などを足すには、それぞれ追加の設定が要ります（有料のキーが要るものもあるので、使う前に案内をよく読んでください）。</div></div>
+<p class="src">出どころ：github.com/mvanhorn/last30days-skill</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="6">oh-my-claudecode<span class="heading-note">（AIのチームで動かす）</span></h2>
+<p class="what">役割のちがう何人ものAIに仕事を分けて、同時に進めてもらうための道具です。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Claude Code の入力欄に、1行ずつ貼る</b><div class="cmd"><code>/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode</code><button type="button" class="mini">コピー</button></div><div class="cmd"><code>/plugin install oh-my-claudecode</code><button type="button" class="mini">コピー</button></div></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>最初の設定をする</b><div class="cmd"><code>/omc-setup</code><button type="button" class="mini">コピー</button></div>質問が出たら、答えながら進めます。</div></div>
+<p class="src">出どころ：github.com/Yeachan-Heo/oh-my-claudecode</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="7">/rewind<span class="heading-note">（さっきの状態に戻す）</span></h2>
+<p class="what">Claude Code にはじめから入っている機能です。入れる作業はいりません。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>入力欄が空のときに Esc を2回</b>または、入力欄に <code>/rewind</code> と入れて Enter。これまでに送った文の一覧が出ます。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>戻したいところを選ぶ</b>「コードと会話を戻す」「会話だけ戻す」「コードだけ戻す」などから選べます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>戻らないものもあります</b>ターミナルの命令で変わったファイルや、Claude Code の外で手で直したファイルは、戻らないことがあります。大事なファイルは、別に保存しておくと安心です。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Checkpointing）</p>
+</section>
+
+<div class="card">
+<b>うまくいかないときは</b><br>
+<span class="summary-items"><span class="summary-item">① 出てきたエラーの文を、そのまま Claude Code に貼って「これを直したい」と送る</span><span class="summary-separator" aria-hidden="true">　</span><span class="summary-item">② 1つずつ入れる（まとめて入れない）</span></span>
+どれも、上の「出どころ」のページにくわしい説明があります。入れる前に、どこが作ったものかを確かめてから入れてください。
+</div>
+
+<p class="small">※ 2026年11月11日時点の、それぞれの公式の説明をもとにまとめています。入れ方や名前は変わることがあります。<br>
+※ 道具によっては、パソコンの中にファイルを書いたり、設定を足したりします。会社のパソコンでは、使ってよいか先に確かめてください。<br>
+※ このページは @f_ai_fusion（えふ。｜AI初心者フクロウ先生）の特典ページです。</p>
+</div>
+<p class="toast" id="toast" role="status" aria-live="polite"></p>
+<script>
+function legacyCopy(text) {
+  var input = document.createElement('textarea');
+  input.value = text;
+  input.setAttribute('readonly', '');
+  input.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;font-size:16px;';
+  document.body.appendChild(input);
+  var x = window.scrollX, y = window.scrollY, ok = false;
+  try { input.select(); input.setSelectionRange(0, input.value.length); ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  input.remove(); window.scrollTo(x, y);
+  return ok;
+}
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('on'); }, 2200);
+}
+document.querySelectorAll('.cmd .mini').forEach(function (btn) {
+  btn.addEventListener('click', async function () {
+    var code = btn.parentNode.querySelector('code');
+    var text = code.textContent.trim(), ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(text); ok = true; }
+      else { ok = legacyCopy(text); }
+    } catch (e) { ok = legacyCopy(text); }
+    if (ok) {
+      btn.textContent = '✓ コピー済み'; setTimeout(function () { btn.textContent = 'コピー'; }, 1800);
+      showToast('コピーしました。そのまま貼り付けてください');
+    } else {
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      showToast('長押ししてコピーしてください');
+    }
+  });
+});
+</script>
+</body>
+</html>
