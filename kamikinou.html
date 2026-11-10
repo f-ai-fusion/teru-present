@@ -98,6 +98,7 @@ button:disabled { cursor:wait; opacity:.8; }
 .steps-section h2:before { content:attr(data-n); }
 .how h2,.tool h2 { flex-wrap:wrap; row-gap:0; }
 .how h2 .heading-note,.tool h2 .heading-note { flex-basis:100%; }
+b.inline { display:inline; font-size:inherit; margin:0; }
 .what { margin:0 0 18px; color:var(--sub); font-size:15px; line-height:1.95; }
 .src { margin:18px 0 0; padding-top:12px; border-top:1px dashed var(--line); color:var(--sub); font-size:12px; overflow-wrap:anywhere; }
 code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; background:var(--highlight); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
@@ -148,14 +149,15 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 </section>
 
 <section class="steps-section tool">
-<h2 data-n="3">3Dコネクター（MCP for Blender）<span class="heading-note">（言葉で3Dを作る）</span></h2>
-<p class="what">無料の3Dソフト「Blender」と Claude をつないで、言葉で頼んだものを Blender の中に作ってもらうための道具です。手順が少し多いので、最後に回してもOKです。</p>
-<div class="step"><div class="num">1</div><div class="step-content"><b>Blender を入れる</b>blender.org から無料で入れられます（3.0 以上）。</div></div>
-<div class="step"><div class="num">2</div><div class="step-content"><b>uv を入れる（ターミナルに貼る）</b><div class="cmd"><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code><button type="button" class="mini">コピー</button></div>uv の公式の入れ方です。終わったら、ターミナルを一度閉じて開き直します。</div></div>
-<div class="step"><div class="num">3</div><div class="step-content"><b>Claude Code とつなぐ（ターミナルに貼る）</b><div class="cmd"><code>claude mcp add blender uvx mcp-for-blender</code><button type="button" class="mini">コピー</button></div></div></div>
-<div class="step"><div class="num">4</div><div class="step-content"><b>Blender 側の部品を入れる（ターミナルに貼る）</b><div class="cmd"><code>uvx mcp-for-blender install-addon</code><button type="button" class="mini">コピー</button></div><span class="setting-path"><span class="app-name">Blender</span> → Edit → Preferences → Add-ons →「Interface: MCP for Blender」をオン</span></div></div>
-<div class="step"><div class="num">5</div><div class="step-content"><b>つながったか確かめる</b>Blender の画面で <code>N</code> キー →「MCP for Blender」のタブを開きます。動いていなければ「Start MCP Server」を押します。あとは Claude Code に「Blenderで〇〇を作って」と頼みます。</div></div>
-<p class="src">出どころ：github.com/ahujasid/blender-mcp</p>
+<h2 data-n="3">3Dコネクター（Blender）<span class="heading-note">（言葉で3Dを作る）</span></h2>
+<p class="what">無料の3Dソフト「Blender」と Claude をつないで、言葉で頼んだものを Blender の中に作ってもらうための、公式のコネクターです。手順が少し多いので、最後に回してもOKです。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>Blender を入れる</b>blender.org から無料で入れられます（5.1 以上が必要）。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>Claude のアプリでコネクターを入れる</b><span class="setting-path"><span class="app-name">Claude（デスクトップアプリ）</span> → 設定 → コネクタ →「blender」で探す →「インストール」</span></div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>Blender 側の部品を入れる</b>blender.org/lab/mcp-server のページにある入れるためのリンクを、Blender の画面にドラッグします。<b class="inline">2回</b>ドラッグします（1回目で置き場所が足され、2回目で入ります）。</div></div>
+<div class="step"><div class="num">4</div><div class="step-content"><b>動いているか確かめる</b><span class="setting-path"><span class="app-name">Blender</span> → Edit → Preferences → Add-ons →「MCP」→「Server is running」と出ていればOK</span>あとは Claude に「Blenderで〇〇を作って」と頼みます。</div></div>
+<div class="step"><div class="num">5</div><div class="step-content"><b>Claude Code でも使うとき（Mac・ターミナルに貼る）</b><div class="cmd"><code>claude mcp add blender -- "$HOME/Library/Application Support/Claude/Claude Extensions/ant.dir.gh.blender.blender-mcp/.venv/bin/blender-mcp"</code><button type="button" class="mini">コピー</button></div>2 で入れたコネクターを、Claude Code からも使えるようにする文です。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>気をつけること</b>Blender の公式ページに「AIが作った命令を、確認なしで Blender の中で動かす」と注意が書かれています。大事な作品のファイルでは使わず、試し用のファイルで使ってください。</div></div>
+<p class="src">出どころ：blender.org/lab/mcp-server ・ Claude のコネクタ一覧（Anthropic & Partners）</p>
 </section>
 
 <section class="steps-section tool">
