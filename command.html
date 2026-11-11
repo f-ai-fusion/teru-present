@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 隠しコマンド5つの使い方まとめ｜えふ。｜AI初心者フクロウ先生</title>
+<style>
+:root {
+  --background:#BFAE99; --paper:#FFFFFF; --ink:#212529;
+  --heading:#2A1F15; --sub:#495057; --accent:#D97454;
+  --accent-text:#A8472A; --button:#B4532F; --button-hover:#963F22;
+  --light:#FAF7F2; --panel:#F7F7F7; --highlight:#FDF6F0;
+  --line:#E9DDD1; --radius:20px; --small-radius:12px;
+  --warm-gradient:linear-gradient(110deg,#EC9067 0%,#D87655 54%,#CB5933 100%);
+  --shadow:0 8px 24px rgb(42 31 21 / 7%);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--background); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; font-size:16px; line-height:1.95; letter-spacing:.015em; }
+.wrap { max-width:840px; margin:0 auto; padding:0 32px 40px; }
+.hero { margin:0 0 28px; }
+.brand { margin:0 -32px 28px; padding:15px 30px; background:linear-gradient(100deg,#B4532F,#963F22); color:var(--paper); font-size:13px; font-weight:600; line-height:1.9; letter-spacing:.015em; }
+.title-panel { position:relative; isolation:isolate; overflow:hidden; background:var(--warm-gradient); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); }
+.title-panel:before,.title-panel:after { content:""; position:absolute; z-index:-1; pointer-events:none; border:1px solid rgb(255 255 255 / 60%); background:linear-gradient(145deg,rgb(255 255 255 / 75%),rgb(255 255 255 / 5%)); border-radius:50%; width:220px; height:110px; transform:rotate(-20deg); }
+.title-panel:before { top:-75px; left:-40px; }
+.title-panel:after { bottom:-73px; right:-40px; }
+h1 { position:relative; background:var(--paper); color:var(--heading); margin:0; padding:30px 20px 26px; border-radius:18px; box-shadow:0 6px 15px rgb(92 42 19 / 13%); font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif; font-size:39px; font-weight:800; line-height:1.5; text-align:center; letter-spacing:.02em; }
+.title-unit { display:inline-block; }
+.title-note { display:table; margin:14px auto 0; padding:3px 17px; border:1px solid var(--line); border-radius:999px; color:var(--accent-text); background:var(--highlight); font-family:"Hiragino Sans",sans-serif; font-size:14px; font-weight:600; letter-spacing:.03em; }
+.intro { margin:25px 0 0; font-size:16px; color:var(--ink); line-height:2; }
+.free-note { background:var(--paper); border:1px solid var(--line); border-radius:var(--small-radius); padding:19px 22px; margin:22px 0 0; color:var(--sub); font-size:14px; line-height:1.95; box-shadow:var(--shadow); }
+.free { display:table; margin-bottom:9px; padding:3px 12px; border-radius:999px; background:var(--highlight); color:var(--accent-text); font-size:13px; font-weight:700; }
+.label-separator,.template-leading { display:none; }
+.template-section,.steps-section { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:27px; }
+h2 { display:flex; align-items:center; gap:12px; padding:14px 16px; margin:-27px -27px 24px; border-bottom:1px solid var(--line); border-radius:var(--radius) var(--radius) 0 0; background:var(--highlight); color:var(--heading); font-size:18px; font-weight:700; line-height:1.8; letter-spacing:0; }
+h2:before { content:"01"; flex:0 0 auto; display:grid; place-items:center; min-width:36px; height:30px; padding:0 6px; border:1px solid var(--line); border-radius:9px; background:var(--paper); color:var(--accent-text); font-family:Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:.04em; }
+.heading-note { display:inline-block; font-size:13px; font-weight:500; }
+.template-shell { padding:0; border:1px solid var(--line); border-radius:var(--small-radius); overflow:hidden; }
+.template { padding:23px; background:var(--panel); border-radius:var(--small-radius); white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; line-height:1.95; letter-spacing:0; outline-offset:-3px; }
+.template:focus { outline:2px solid var(--accent-text); }
+.copy-area { margin:20px 0 0; }
+button { display:flex; align-items:center; justify-content:center; width:100%; min-height:56px; padding:15px 18px; border:1px solid transparent; border-radius:999px; background:var(--button); color:var(--paper); font-family:inherit; font-size:16px; font-weight:700; line-height:1.6; letter-spacing:.02em; box-shadow:0 5px 12px rgb(180 83 47 / 20%); cursor:pointer; touch-action:manipulation; transition:background .15s,box-shadow .15s; }
+button:hover { background:var(--button-hover); box-shadow:0 6px 15px rgb(180 83 47 / 25%); }
+button:focus-visible { outline:3px solid var(--heading); outline-offset:4px; }
+button:disabled { cursor:wait; opacity:.8; }
+.copy-feedback { min-height:27px; margin:8px 0 0; color:var(--accent-text); text-align:center; font-size:13px; line-height:1.8; letter-spacing:0; }
+.copy-feedback:not(:empty) { display:flex; align-items:flex-start; justify-content:center; gap:7px; padding:10px 12px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--highlight); }
+.copy-feedback:not(:empty):before { content:"✓"; flex:0 0 auto; font-weight:700; }
+.copy-feedback[data-state="manual"] { color:var(--heading); background:var(--light); border-color:#BFAE99; }
+.copy-feedback[data-state="manual"]:before { content:"↳"; }
+.steps-section { margin-top:28px; }
+.steps-section h2:before { content:"02"; }
+.step { display:flex; gap:16px; margin:0; padding:22px 0; border-bottom:1px solid var(--line); }
+.step:first-of-type { padding-top:0; }
+.step:last-child { border:0; padding-bottom:0; }
+.num { flex:0 0 36px; display:grid; place-items:center; height:36px; border-radius:50%; background:var(--highlight); color:var(--accent-text); border:1px solid var(--line); font-family:Arial,sans-serif; font-size:15px; font-weight:700; line-height:1; }
+.step-content { min-width:0; flex:1; color:var(--ink); font-size:16px; line-height:1.95; }
+.step b { display:block; color:var(--heading); font-size:17px; line-height:1.8; margin-bottom:6px; font-weight:700; }
+.step b + br,.setting-path + br { display:none; }
+.setting-path { display:block; padding:11px 13px; margin-top:8px; border:1px solid var(--line); border-radius:10px; background:var(--light); color:var(--sub); font-size:14px; line-height:1.9; overflow-wrap:anywhere; }
+.app-name { color:var(--accent-text); font-weight:700; }
+.card { margin:28px 0 22px; padding:25px 27px; border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); color:var(--ink); font-size:14px; line-height:2; }
+.card b { display:inline-block; margin-bottom:13px; color:var(--heading); font-size:18px; font-weight:700; }
+.summary-items { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; margin:0 0 12px; }
+.summary-items span { display:block; font-size:14px; font-weight:600; line-height:2; }
+.summary-items .summary-separator { display:none; }
+.small { margin:0; padding:19px 22px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--light); color:var(--sub); font-size:13px; line-height:1.95; overflow-wrap:anywhere; }
+@media(min-width:860px) { .wrap { padding-top:24px; } .brand { border-radius:12px; margin:0 0 28px; } .title-panel { padding:36px; } h1 { font-size:44px; padding:34px 20px; } .intro { margin-top:28px; } .summary-items { display:flex; gap:0 22px; } }
+@media(max-width:560px) {
+  .wrap { padding:0 16px 28px; }
+  .brand { margin:0 -16px 22px; padding:13px 18px; font-size:13px; line-height:1.9; letter-spacing:0; }
+  .hero { margin-bottom:22px; }
+  .title-panel { padding:20px 15px; border-radius:16px; }
+  h1 { padding:24px 12px 22px; border-radius:13px; font-size:30px; line-height:1.5; letter-spacing:.01em; }
+  .title-note { font-size:13px; margin-top:12px; padding:3px 13px; }
+  .intro { margin-top:22px; font-size:16px; line-height:1.95; letter-spacing:0; }
+  .free-note { padding:17px 18px; margin-top:19px; font-size:13px; line-height:1.95; letter-spacing:0; }
+  .template-section,.steps-section { padding:19px; border-radius:16px; }
+  h2 { margin:-19px -19px 19px; padding:14px 14px; gap:9px; font-size:16px; border-radius:16px 16px 0 0; line-height:1.8; }
+  h2:before { min-width:31px; height:29px; font-size:13px; }
+  .template { padding:15px 14px 18px; font-size:16px; line-height:1.9; }
+  .copy-area { margin-top:17px; }
+  button { min-height:56px; padding:15px 10px; font-size:15px; letter-spacing:0; }
+  .steps-section { margin-top:22px; }
+  .step { gap:11px; padding:20px 0; }
+  .num { flex-basis:31px; height:31px; font-size:14px; }
+  .step b { font-size:15px; }
+  .setting-path { padding:10px 11px; font-size:14px; }
+  .card { margin:22px 0 20px; padding:21px 20px; border-radius:16px; font-size:13px; }
+  .card b { font-size:17px; margin-bottom:12px; }
+  .small { padding:17px 18px; font-size:13px; line-height:2; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } button { transition:none; } }
+@media print { body { background:white; } .wrap { max-width:none; padding:0; } button,.copy-feedback { display:none; } .hero,.template-section,.step,.card { break-inside:avoid; } .template-section,.steps-section,.card { box-shadow:none; } }
+
+
+/* 神機能7つ・隠しコマンド5つ用（2026-11-11 追加） */
+.steps-section h2:before { content:attr(data-n); }
+.how h2,.tool h2 { flex-wrap:wrap; row-gap:0; }
+.how h2 .heading-note,.tool h2 .heading-note { flex-basis:100%; }
+b.inline { display:inline; font-size:inherit; margin:0; }
+.what { margin:0 0 18px; color:var(--sub); font-size:15px; line-height:1.95; }
+.src { margin:18px 0 0; padding-top:12px; border-top:1px dashed var(--line); color:var(--sub); font-size:12px; overflow-wrap:anywhere; }
+code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; background:var(--highlight); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+.cmd { display:flex; align-items:stretch; margin:8px 0 10px; border-radius:10px; overflow:hidden; background:#2A1F15; }
+.cmd code { flex:1; min-width:0; display:block; padding:12px 13px; background:none; border:0; border-radius:0; color:#FDF6F0; font-size:14px; line-height:1.7; overflow-wrap:anywhere; word-break:break-all; }
+.cmd .mini { flex:0 0 auto; width:auto; min-height:0; margin:0; padding:0 15px; border-radius:0; box-shadow:none; background:var(--button); font-size:13px; letter-spacing:0; }
+.cmd .mini:hover { background:var(--button-hover); box-shadow:none; }
+.steps-section + .steps-section { margin-top:22px; }
+.toast { position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); margin:0; padding:10px 18px; border-radius:999px; background:var(--heading); color:var(--paper); font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; white-space:nowrap; }
+.toast.on { opacity:1; transform:translate(-50%,0); }
+@media(max-width:560px) { .cmd code { font-size:13px; padding:11px; } .cmd .mini { padding:0 11px; } .what { font-size:14px; } }
+@media(prefers-reduced-motion:reduce) { .toast { transition:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<p class="brand">🦉 えふ。｜AI初心者フクロウ先生 からのプレゼント</p>
+<div class="title-panel"><h1><span class="title-unit">Claude Code</span><span class="title-unit">隠しコマンド5つの</span><span class="title-unit">使い方まとめ</span><span class="title-note">（リールで紹介した5つ）</span></h1></div>
+<p class="intro">リールで紹介した5つのコマンドの、使い方とコツをまとめました。<br>
+どれも Claude Code にはじめから入っているので、入れる作業はいりません。<br>
+黒い枠の文は、右の「コピー」を押して、そのまま貼り付けられます。</p>
+<p class="free-note"><span class="free">はじめに</span><span class="label-separator" aria-hidden="true">　</span>Claude Code は、Claude の有料プラン（Pro 以上）で使えます。コマンドは、入力欄に「/」を打つと一覧が出てきます。続けて文字を打つと、しぼりこめます。</p>
+</header>
+
+<section class="steps-section how">
+<h2 data-n="★">どこに打つの？<span class="heading-note">（最初に読んでください）</span></h2>
+<div class="step"><div class="num">A</div><div class="step-content"><b>Claude Code の入力欄に打つ</b><br>Mac の「ターミナル」で <code>claude</code> と入れて起動した画面の、いちばん下の入力欄に打って、Enter。</div></div>
+<div class="step"><div class="num">B</div><div class="step-content"><b>コマンドは文の先頭に</b><br>「/」で始まる言葉は、文の最初に置いたときだけコマンドとして動きます。</div></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="1">/btw<span class="heading-note">（作業を止めずに、横から質問）</span></h2>
+<p class="what">Claude が作業している途中でも、ちょっとした質問ができます。答えは横に出るだけで、今の会話の流れには足されません。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>質問をつけて送る</b><div class="cmd"><code>/btw 今なにをしているか、ひと言で教えて</code><button type="button" class="mini">コピー</button></div>「/btw」のあとの文を、聞きたいことに書きかえて送ります。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>前の答えをもう一度見る</b><code>/btw</code> だけを送ると、前にした横の質問と答えを見返せます。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>向いている使い方</b>「この言葉の意味は？」「あとどれくらいかかりそう？」など、本題とは別の小さな質問に。本題の指示は、ふつうに送ってください。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Commands・Interactive mode）</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="2">/voice<span class="heading-note">（話しかけて指示を出す）</span></h2>
+<p class="what">マイクに話した言葉が、入力欄に文字で入ります。キーボードで打つのと声を、まぜて使えます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>声の入力をオンにする</b><div class="cmd"><code>/voice</code><button type="button" class="mini">コピー</button></div>はじめてのときは、Mac に「マイクを使っていいか」と聞かれるので、許可します。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>スペースキーを長押しして話す</b>押しているあいだだけ録音されます。はなすと文字になって入るので、確かめてから Enter。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>日本語で話すときは、先に言語を日本語にする</b>何も設定していないと、英語として聞き取られます。入力欄に <code>/config</code> と入れて、言語（Language）を日本語にしておきます。</div></div>
+<div class="step"><div class="num">4</div><div class="step-content"><b>押しっぱなしが苦手なら</b><div class="cmd"><code>/voice tap</code><button type="button" class="mini">コピー</button></div>スペースを1回押すと録音が始まり、もう1回押すと送られます。やめるときは <code>/voice off</code>。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>使えないとき</b>Claude.ai のアカウントでログインしているときだけ使えます（APIキーで使っている場合は使えません）。声は文字にするために Anthropic のサーバーに送られます。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Voice dictation）</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="3">/insights<span class="heading-note">（自分の使い方を分析）</span></h2>
+<p class="what">このパソコンでの最近の Claude Code の使い方を分析して、レポートを作ってくれます。よく作業している内容、つまずいたところ、次に試すといい機能まで出てきます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>そのまま送る</b><div class="cmd"><code>/insights</code><button type="button" class="mini">コピー</button></div>分析が終わると、ブラウザで見られるレポートができます。少し時間がかかります。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>レポートの置き場所</b><span class="setting-path">ホーム → .claude → usage-data → report.html</span>前のレポートも日付つきで残ります（何もしなければ、30日たつと消えます）。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>気をつけること</b>分析にも、ふだんの使用量を使います。レポートには自分の作業の中身が書かれるので、人に見せる・SNSに載せるときは、見せたくないところを隠してください。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Manage costs・Analyze your usage patterns）</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="4">/usage<span class="heading-note">（使った量と、残りが分かる）</span></h2>
+<p class="what">今どれだけ使ったか、プランの上限まであとどれくらいかを、バーでひと目で見られます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>そのまま送る</b><div class="cmd"><code>/usage</code><button type="button" class="mini">コピー</button></div>Claude が作業している途中に送っても、止めずにすぐ表示されます。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>何に使ったかも分かる</b>有料プランなら、どのスキルやプラグインがどれくらい使ったかの内訳と、減らすためのおすすめも出ます。<code>d</code> と <code>w</code> のキーで「この24時間」と「この7日」を切り替えられます。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>数字の見方</b>このパソコンの記録から計算した目安です。スマホや claude.ai で使った分は入っていません。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Manage costs・/usage）</p>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="5">/context<span class="heading-note">（AIの記憶の埋まり具合）</span></h2>
+<p class="what">AI が一度に覚えておける量（コンテキスト）が、今どれだけ埋まっているかを、色つきのマスで見せてくれます。何が場所を食っているかと、空け方のおすすめも出ます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>そのまま送る</b><div class="cmd"><code>/context</code><button type="button" class="mini">コピー</button></div>色ごとに「会話」「道具の説明」「メモリ」などに分かれて表示されます。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>くわしく見る</b><div class="cmd"><code>/context all</code><button type="button" class="mini">コピー</button></div>何がどれくらい使っているかを、全部ひらいて見られます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>いっぱいになってきたら</b>別の作業に移るときは <code>/clear</code>（会話をまっさらにする）、同じ作業を続けるときは <code>/compact</code>（これまでの話を要約して場所を空ける）を使います。</div></div>
+<p class="src">出どころ：Claude Code 公式ドキュメント（Commands・Manage costs）</p>
+</section>
+
+<div class="card">
+<b>うまくいかないときは</b><br>
+<span class="summary-items"><span class="summary-item">① 「/」を打って一覧に出てくるか確かめる（出なければ Claude Code を新しくする）</span><span class="summary-separator" aria-hidden="true">　</span><span class="summary-item">② 出てきたエラーの文を、そのまま Claude Code に貼って「これを直したい」と送る</span></span>
+入力欄に <code>/help</code> と入れると、ほかのコマンドも見られます。
+</div>
+
+<p class="small">※ 2026年11月11日時点の、Claude Code 公式ドキュメントをもとにまとめています。コマンドの名前や動きは変わることがあります。<br>
+※ 会社のパソコンでは、使ってよいか先に確かめてください。<br>
+※ このページは @f_ai_fusion（えふ。｜AI初心者フクロウ先生）の特典ページです。</p>
+</div>
+<p class="toast" id="toast" role="status" aria-live="polite"></p>
+<script>
+function legacyCopy(text) {
+  var input = document.createElement('textarea');
+  input.value = text;
+  input.setAttribute('readonly', '');
+  input.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;font-size:16px;';
+  document.body.appendChild(input);
+  var x = window.scrollX, y = window.scrollY, ok = false;
+  try { input.select(); input.setSelectionRange(0, input.value.length); ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  input.remove(); window.scrollTo(x, y);
+  return ok;
+}
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('on'); }, 2200);
+}
+document.querySelectorAll('.cmd .mini').forEach(function (btn) {
+  btn.addEventListener('click', async function () {
+    var code = btn.parentNode.querySelector('code');
+    var text = code.textContent.trim(), ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(text); ok = true; }
+      else { ok = legacyCopy(text); }
+    } catch (e) { ok = legacyCopy(text); }
+    if (ok) {
+      btn.textContent = '✓ コピー済み'; setTimeout(function () { btn.textContent = 'コピー'; }, 1800);
+      showToast('コピーしました。そのまま貼り付けてください');
+    } else {
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      showToast('長押ししてコピーしてください');
+    }
+  });
+});
+</script>
+</body>
+</html>
