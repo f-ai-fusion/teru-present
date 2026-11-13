@@ -1,0 +1,35 @@
+/* キット型の部品（2026-11-12）：進み具合・目次・できた合図・全部クリア
+   使い方：特典ページの <head> に <link rel="stylesheet" href="kit.css">、</body> の前に <script src="kit.js"></script>
+   クリアの対象は class="tool" の section。各 section の最後に .kit-done を置く */
+.kit-bar { position:sticky; top:0; z-index:20; margin:0 -32px 0; padding:12px 32px 13px; background:rgb(255 255 255 / 94%); border-bottom:1px solid var(--line); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.kit-bar-row { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:7px; }
+.kit-bar-label { color:var(--heading); font-size:14px; font-weight:700; }
+.kit-bar-count { color:var(--accent-text); font-family:Arial,sans-serif; font-size:15px; font-weight:700; letter-spacing:.02em; }
+.kit-track { height:10px; border-radius:999px; background:var(--highlight); border:1px solid var(--line); overflow:hidden; }
+.kit-fill { height:100%; width:0; border-radius:999px; background:var(--warm-gradient); transition:width .35s ease; }
+.kit-toc { margin:0 0 26px; padding:20px 22px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); }
+.kit-toc-title { margin:0 0 10px; color:var(--heading); font-size:16px; font-weight:700; }
+.kit-toc ol { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.kit-toc a { display:flex; align-items:center; gap:11px; padding:9px 12px; border-radius:10px; background:var(--light); color:var(--ink); text-decoration:none; font-size:15px; line-height:1.6; }
+.kit-toc a:hover { background:var(--highlight); }
+.kit-toc a:focus-visible { outline:3px solid var(--heading); outline-offset:2px; }
+.kit-mark { flex:0 0 26px; height:26px; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line); background:var(--paper); color:var(--accent-text); font-family:Arial,sans-serif; font-size:13px; font-weight:700; }
+.kit-toc li.is-done .kit-mark { background:var(--button); border-color:var(--button); color:var(--paper); }
+.kit-toc li.is-done a { color:var(--sub); }
+.kit-done { margin:20px 0 0; padding:16px 18px; border:1px dashed var(--accent); border-radius:var(--small-radius); background:var(--highlight); }
+.kit-signal { margin:0 0 12px; color:var(--heading); font-size:15px; line-height:1.85; }
+.kit-signal b { display:inline; margin:0; color:var(--accent-text); font-size:inherit; }
+.kit-done .done-btn { min-height:50px; background:var(--paper); color:var(--button); border:2px solid var(--button); box-shadow:none; }
+.kit-done .done-btn:hover { background:var(--paper); color:var(--button-hover); border-color:var(--button-hover); box-shadow:none; }
+section.is-done .kit-done { border-style:solid; }
+section.is-done .kit-done .done-btn { background:var(--button); color:var(--paper); }
+.kit-clear { display:none; margin:28px 0 0; padding:26px 22px; border-radius:var(--radius); background:var(--warm-gradient); color:var(--paper); text-align:center; box-shadow:var(--shadow); }
+.kit-clear.on { display:block; }
+.kit-clear .kit-clear-big { margin:0 0 6px; font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif; font-size:26px; font-weight:800; line-height:1.5; }
+.kit-clear p { margin:0; font-size:15px; line-height:1.9; }
+.kit-safe { margin:0 0 26px; padding:16px 20px; border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:var(--small-radius); background:var(--paper); color:var(--sub); font-size:14px; line-height:1.95; }
+.kit-safe b { color:var(--heading); }
+@media(min-width:860px) { .kit-bar { margin:0 0 24px; border:1px solid var(--line); border-radius:12px; } }
+@media(max-width:560px) { .kit-bar { margin:0 -16px 0; padding:10px 16px 11px; } .kit-toc { padding:17px 16px; } .kit-toc a { font-size:14px; padding:8px 10px; } .kit-done { padding:14px 15px; } .kit-signal { font-size:14px; } .kit-clear .kit-clear-big { font-size:22px; } }
+@media(prefers-reduced-motion:reduce) { .kit-fill { transition:none; } }
+@media print { .kit-bar,.kit-done .done-btn { display:none; } }

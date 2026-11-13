@@ -112,6 +112,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 @media(max-width:560px) { .cmd code { font-size:13px; padding:11px; } .cmd .mini { padding:0 11px; } .what { font-size:14px; } }
 @media(prefers-reduced-motion:reduce) { .toast { transition:none; } }
 </style>
+<link rel="stylesheet" href="kit.css">
 </head>
 <body>
 <div class="wrap">
@@ -120,8 +121,10 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="title-panel"><h1><span class="title-unit">Claude Code</span><span class="title-unit">隠しコマンド5つの</span><span class="title-unit">使い方まとめ</span><span class="title-note">（リールで紹介した5つ）</span></h1></div>
 <p class="intro">リールで紹介した5つのコマンドの、使い方とコツをまとめました。<br>
 どれも Claude Code にはじめから入っているので、入れる作業はいりません。<br>
-黒い枠の文は、右の「コピー」を押して、そのまま貼り付けられます。</p>
+黒い枠の文は、右の「コピー」を押して、そのまま貼り付けられます。<br>
+1つ試せたら「できた！」を押してね。上のバーが進んで、5つそろうとクリアです。</p>
 <p class="free-note"><span class="free">はじめに</span><span class="label-separator" aria-hidden="true">　</span>Claude Code は、Claude の有料プラン（Pro 以上）で使えます。コマンドは、入力欄に「/」を打つと一覧が出てきます。続けて文字を打つと、しぼりこめます。</p>
+<p class="kit-safe"><b>安心して試してね：</b>この5つは、どれも「見る・聞く」だけのコマンドです。ファイルを消したり、どこかに送ったり、お金がかかったりはしません。「できた！」の記録も、このスマホ・パソコンの中だけに残ります。</p>
 </header>
 
 <section class="steps-section how">
@@ -137,6 +140,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="step"><div class="num">2</div><div class="step-content"><b>前の答えをもう一度見る</b><code>/btw</code> だけを送ると、前にした横の質問と答えを見返せます。</div></div>
 <div class="step"><div class="num">!</div><div class="step-content"><b>向いている使い方</b>「この言葉の意味は？」「あとどれくらいかかりそう？」など、本題とは別の小さな質問に。本題の指示は、ふつうに送ってください。</div></div>
 <p class="src">出どころ：Claude Code 公式ドキュメント（Commands・Interactive mode）</p>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>画面に答えが出て、Claude の作業は止まらずにそのまま続いている</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
 </section>
 
 <section class="steps-section tool">
@@ -148,6 +152,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="step"><div class="num">4</div><div class="step-content"><b>押しっぱなしが苦手なら</b><div class="cmd"><code>/voice tap</code><button type="button" class="mini">コピー</button></div>スペースを1回押すと録音が始まり、もう1回押すと送られます。やめるときは <code>/voice off</code>。</div></div>
 <div class="step"><div class="num">!</div><div class="step-content"><b>使えないとき</b>Claude.ai のアカウントでログインしているときだけ使えます（APIキーで使っている場合は使えません）。声は文字にするために Anthropic のサーバーに送られます。</div></div>
 <p class="src">出どころ：Claude Code 公式ドキュメント（Voice dictation）</p>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>スペースを押しながら話した言葉が、入力欄に文字で入った</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
 </section>
 
 <section class="steps-section tool">
@@ -157,6 +162,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="step"><div class="num">2</div><div class="step-content"><b>レポートの置き場所</b><span class="setting-path">ホーム → .claude → usage-data → report.html</span>前のレポートも日付つきで残ります（何もしなければ、30日たつと消えます）。</div></div>
 <div class="step"><div class="num">!</div><div class="step-content"><b>気をつけること</b>分析にも、ふだんの使用量を使います。レポートには自分の作業の中身が書かれるので、人に見せる・SNSに載せるときは、見せたくないところを隠してください。</div></div>
 <p class="src">出どころ：Claude Code 公式ドキュメント（Manage costs・Analyze your usage patterns）</p>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>分析が終わって、ブラウザでレポートが開いた</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
 </section>
 
 <section class="steps-section tool">
@@ -166,6 +172,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="step"><div class="num">2</div><div class="step-content"><b>何に使ったかも分かる</b>有料プランなら、どのスキルやプラグインがどれくらい使ったかの内訳と、減らすためのおすすめも出ます。<code>d</code> と <code>w</code> のキーで「この24時間」と「この7日」を切り替えられます。</div></div>
 <div class="step"><div class="num">!</div><div class="step-content"><b>数字の見方</b>このパソコンの記録から計算した目安です。スマホや claude.ai で使った分は入っていません。</div></div>
 <p class="src">出どころ：Claude Code 公式ドキュメント（Manage costs・/usage）</p>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>使った量のバーが表示された</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
 </section>
 
 <section class="steps-section tool">
@@ -175,6 +182,7 @@ code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; ba
 <div class="step"><div class="num">2</div><div class="step-content"><b>くわしく見る</b><div class="cmd"><code>/context all</code><button type="button" class="mini">コピー</button></div>何がどれくらい使っているかを、全部ひらいて見られます。</div></div>
 <div class="step"><div class="num">3</div><div class="step-content"><b>いっぱいになってきたら</b>別の作業に移るときは <code>/clear</code>（会話をまっさらにする）、同じ作業を続けるときは <code>/compact</code>（これまでの話を要約して場所を空ける）を使います。</div></div>
 <p class="src">出どころ：Claude Code 公式ドキュメント（Commands・Manage costs）</p>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>色つきのマスが表示された</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
 </section>
 
 <div class="card">
@@ -225,5 +233,6 @@ document.querySelectorAll('.cmd .mini').forEach(function (btn) {
   });
 });
 </script>
+<script src="kit.js"></script>
 </body>
 </html>

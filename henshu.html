@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edits 神機能5つの使い方まとめ｜えふ。｜AI初心者フクロウ先生</title>
+<style>
+:root {
+  --background:#BFAE99; --paper:#FFFFFF; --ink:#212529;
+  --heading:#2A1F15; --sub:#495057; --accent:#D97454;
+  --accent-text:#A8472A; --button:#B4532F; --button-hover:#963F22;
+  --light:#FAF7F2; --panel:#F7F7F7; --highlight:#FDF6F0;
+  --line:#E9DDD1; --radius:20px; --small-radius:12px;
+  --warm-gradient:linear-gradient(110deg,#EC9067 0%,#D87655 54%,#CB5933 100%);
+  --shadow:0 8px 24px rgb(42 31 21 / 7%);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--background); color:var(--ink); font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; font-size:16px; line-height:1.95; letter-spacing:.015em; }
+.wrap { max-width:840px; margin:0 auto; padding:0 32px 40px; }
+.hero { margin:0 0 28px; }
+.brand { margin:0 -32px 28px; padding:15px 30px; background:linear-gradient(100deg,#B4532F,#963F22); color:var(--paper); font-size:13px; font-weight:600; line-height:1.9; letter-spacing:.015em; }
+.title-panel { position:relative; isolation:isolate; overflow:hidden; background:var(--warm-gradient); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); }
+.title-panel:before,.title-panel:after { content:""; position:absolute; z-index:-1; pointer-events:none; border:1px solid rgb(255 255 255 / 60%); background:linear-gradient(145deg,rgb(255 255 255 / 75%),rgb(255 255 255 / 5%)); border-radius:50%; width:220px; height:110px; transform:rotate(-20deg); }
+.title-panel:before { top:-75px; left:-40px; }
+.title-panel:after { bottom:-73px; right:-40px; }
+h1 { position:relative; background:var(--paper); color:var(--heading); margin:0; padding:30px 20px 26px; border-radius:18px; box-shadow:0 6px 15px rgb(92 42 19 / 13%); font-family:"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif; font-size:39px; font-weight:800; line-height:1.5; text-align:center; letter-spacing:.02em; }
+.title-unit { display:inline-block; }
+.title-note { display:table; margin:14px auto 0; padding:3px 17px; border:1px solid var(--line); border-radius:999px; color:var(--accent-text); background:var(--highlight); font-family:"Hiragino Sans",sans-serif; font-size:14px; font-weight:600; letter-spacing:.03em; }
+.intro { margin:25px 0 0; font-size:16px; color:var(--ink); line-height:2; }
+.free-note { background:var(--paper); border:1px solid var(--line); border-radius:var(--small-radius); padding:19px 22px; margin:22px 0 0; color:var(--sub); font-size:14px; line-height:1.95; box-shadow:var(--shadow); }
+.free { display:table; margin-bottom:9px; padding:3px 12px; border-radius:999px; background:var(--highlight); color:var(--accent-text); font-size:13px; font-weight:700; }
+.label-separator,.template-leading { display:none; }
+.template-section,.steps-section { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:27px; }
+h2 { display:flex; align-items:center; gap:12px; padding:14px 16px; margin:-27px -27px 24px; border-bottom:1px solid var(--line); border-radius:var(--radius) var(--radius) 0 0; background:var(--highlight); color:var(--heading); font-size:18px; font-weight:700; line-height:1.8; letter-spacing:0; }
+h2:before { content:"01"; flex:0 0 auto; display:grid; place-items:center; min-width:36px; height:30px; padding:0 6px; border:1px solid var(--line); border-radius:9px; background:var(--paper); color:var(--accent-text); font-family:Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:.04em; }
+.heading-note { display:inline-block; font-size:13px; font-weight:500; }
+.template-shell { padding:0; border:1px solid var(--line); border-radius:var(--small-radius); overflow:hidden; }
+.template { padding:23px; background:var(--panel); border-radius:var(--small-radius); white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; line-height:1.95; letter-spacing:0; outline-offset:-3px; }
+.template:focus { outline:2px solid var(--accent-text); }
+.copy-area { margin:20px 0 0; }
+button { display:flex; align-items:center; justify-content:center; width:100%; min-height:56px; padding:15px 18px; border:1px solid transparent; border-radius:999px; background:var(--button); color:var(--paper); font-family:inherit; font-size:16px; font-weight:700; line-height:1.6; letter-spacing:.02em; box-shadow:0 5px 12px rgb(180 83 47 / 20%); cursor:pointer; touch-action:manipulation; transition:background .15s,box-shadow .15s; }
+button:hover { background:var(--button-hover); box-shadow:0 6px 15px rgb(180 83 47 / 25%); }
+button:focus-visible { outline:3px solid var(--heading); outline-offset:4px; }
+button:disabled { cursor:wait; opacity:.8; }
+.copy-feedback { min-height:27px; margin:8px 0 0; color:var(--accent-text); text-align:center; font-size:13px; line-height:1.8; letter-spacing:0; }
+.copy-feedback:not(:empty) { display:flex; align-items:flex-start; justify-content:center; gap:7px; padding:10px 12px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--highlight); }
+.copy-feedback:not(:empty):before { content:"✓"; flex:0 0 auto; font-weight:700; }
+.copy-feedback[data-state="manual"] { color:var(--heading); background:var(--light); border-color:#BFAE99; }
+.copy-feedback[data-state="manual"]:before { content:"↳"; }
+.steps-section { margin-top:28px; }
+.steps-section h2:before { content:"02"; }
+.step { display:flex; gap:16px; margin:0; padding:22px 0; border-bottom:1px solid var(--line); }
+.step:first-of-type { padding-top:0; }
+.step:last-child { border:0; padding-bottom:0; }
+.num { flex:0 0 36px; display:grid; place-items:center; height:36px; border-radius:50%; background:var(--highlight); color:var(--accent-text); border:1px solid var(--line); font-family:Arial,sans-serif; font-size:15px; font-weight:700; line-height:1; }
+.step-content { min-width:0; flex:1; color:var(--ink); font-size:16px; line-height:1.95; }
+.step b { display:block; color:var(--heading); font-size:17px; line-height:1.8; margin-bottom:6px; font-weight:700; }
+.step b + br,.setting-path + br { display:none; }
+.setting-path { display:block; padding:11px 13px; margin-top:8px; border:1px solid var(--line); border-radius:10px; background:var(--light); color:var(--sub); font-size:14px; line-height:1.9; overflow-wrap:anywhere; }
+.app-name { color:var(--accent-text); font-weight:700; }
+.card { margin:28px 0 22px; padding:25px 27px; border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); color:var(--ink); font-size:14px; line-height:2; }
+.card b { display:inline-block; margin-bottom:13px; color:var(--heading); font-size:18px; font-weight:700; }
+.summary-items { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; margin:0 0 12px; }
+.summary-items span { display:block; font-size:14px; font-weight:600; line-height:2; }
+.summary-items .summary-separator { display:none; }
+.small { margin:0; padding:19px 22px; border:1px solid var(--line); border-radius:var(--small-radius); background:var(--light); color:var(--sub); font-size:13px; line-height:1.95; overflow-wrap:anywhere; }
+@media(min-width:860px) { .wrap { padding-top:24px; } .brand { border-radius:12px; margin:0 0 28px; } .title-panel { padding:36px; } h1 { font-size:44px; padding:34px 20px; } .intro { margin-top:28px; } .summary-items { display:flex; gap:0 22px; } }
+@media(max-width:560px) {
+  .wrap { padding:0 16px 28px; }
+  .brand { margin:0 -16px 22px; padding:13px 18px; font-size:13px; line-height:1.9; letter-spacing:0; }
+  .hero { margin-bottom:22px; }
+  .title-panel { padding:20px 15px; border-radius:16px; }
+  h1 { padding:24px 12px 22px; border-radius:13px; font-size:30px; line-height:1.5; letter-spacing:.01em; }
+  .title-note { font-size:13px; margin-top:12px; padding:3px 13px; }
+  .intro { margin-top:22px; font-size:16px; line-height:1.95; letter-spacing:0; }
+  .free-note { padding:17px 18px; margin-top:19px; font-size:13px; line-height:1.95; letter-spacing:0; }
+  .template-section,.steps-section { padding:19px; border-radius:16px; }
+  h2 { margin:-19px -19px 19px; padding:14px 14px; gap:9px; font-size:16px; border-radius:16px 16px 0 0; line-height:1.8; }
+  h2:before { min-width:31px; height:29px; font-size:13px; }
+  .template { padding:15px 14px 18px; font-size:16px; line-height:1.9; }
+  .copy-area { margin-top:17px; }
+  button { min-height:56px; padding:15px 10px; font-size:15px; letter-spacing:0; }
+  .steps-section { margin-top:22px; }
+  .step { gap:11px; padding:20px 0; }
+  .num { flex-basis:31px; height:31px; font-size:14px; }
+  .step b { font-size:15px; }
+  .setting-path { padding:10px 11px; font-size:14px; }
+  .card { margin:22px 0 20px; padding:21px 20px; border-radius:16px; font-size:13px; }
+  .card b { font-size:17px; margin-bottom:12px; }
+  .small { padding:17px 18px; font-size:13px; line-height:2; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } button { transition:none; } }
+@media print { body { background:white; } .wrap { max-width:none; padding:0; } button,.copy-feedback { display:none; } .hero,.template-section,.step,.card { break-inside:avoid; } .template-section,.steps-section,.card { box-shadow:none; } }
+
+
+/* 神機能7つ・隠しコマンド5つ用（2026-11-11 追加） */
+.steps-section h2:before { content:attr(data-n); }
+.how h2,.tool h2 { flex-wrap:wrap; row-gap:0; }
+.how h2 .heading-note,.tool h2 .heading-note { flex-basis:100%; }
+b.inline { display:inline; font-size:inherit; margin:0; }
+.what { margin:0 0 18px; color:var(--sub); font-size:15px; line-height:1.95; }
+.src { margin:18px 0 0; padding-top:12px; border-top:1px dashed var(--line); color:var(--sub); font-size:12px; overflow-wrap:anywhere; }
+code { font-family:"SFMono-Regular",Menlo,Consolas,monospace; font-size:.9em; background:var(--highlight); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+.cmd { display:flex; align-items:stretch; margin:8px 0 10px; border-radius:10px; overflow:hidden; background:#2A1F15; }
+.cmd code { flex:1; min-width:0; display:block; padding:12px 13px; background:none; border:0; border-radius:0; color:#FDF6F0; font-size:14px; line-height:1.7; overflow-wrap:anywhere; word-break:break-all; }
+.cmd .mini { flex:0 0 auto; width:auto; min-height:0; margin:0; padding:0 15px; border-radius:0; box-shadow:none; background:var(--button); font-size:13px; letter-spacing:0; }
+.cmd .mini:hover { background:var(--button-hover); box-shadow:none; }
+.steps-section + .steps-section { margin-top:22px; }
+.toast { position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); margin:0; padding:10px 18px; border-radius:999px; background:var(--heading); color:var(--paper); font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; white-space:nowrap; }
+.toast.on { opacity:1; transform:translate(-50%,0); }
+@media(max-width:560px) { .cmd code { font-size:13px; padding:11px; } .cmd .mini { padding:0 11px; } .what { font-size:14px; } }
+@media(prefers-reduced-motion:reduce) { .toast { transition:none; } }
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<p class="brand">🦉 えふ。｜AI初心者フクロウ先生 からのプレゼント</p>
+<div class="title-panel"><h1><span class="title-unit">Edits</span><span class="title-unit">神機能5つの</span><span class="title-unit">使い方まとめ</span><span class="title-note">（リールで紹介した5つ）</span></h1></div>
+<p class="intro">リールで紹介した、インスタ公式の動画編集アプリ「Edits」の5つの機能の使い方をまとめました。<br>
+スマホ版（iPhone）と Mac 版、どちらでも使える機能です。<br>
+1つ試せたら「できた！」を押してね。上のバーが進んで、5つそろうとクリアです。</p>
+<p class="free-note"><span class="free">はじめに</span><span class="label-separator" aria-hidden="true">　</span>Edits は無料で使えます（スマホは App Store、Mac は Mac App Store から）。インスタのアカウントでログインします。まず好きな動画を1本入れて、新しいプロジェクトを作っておいてください。</p>
+<p class="kit-safe"><b>安心して試してね：</b>どれも編集の中だけの操作です。元の動画は消えませんし、お金もかかりません。⑤以外は、どこにも公開されません。「できた！」の記録も、このスマホ・パソコンの中だけに残ります。</p>
+</header>
+
+<section class="steps-section how">
+<h2 data-n="★">道具はどこにある？<span class="heading-note">（最初に読んでください）</span></h2>
+<div class="step"><div class="num">A</div><div class="step-content"><b>スマホ版</b>下に道具が横に並んでいます。動画（タイムラインの帯）を1回タップすると、その動画用の道具に切り替わります。指で横に流すと、続きが出てきます。</div></div>
+<div class="step"><div class="num">B</div><div class="step-content"><b>Mac 版</b>左に道具のアイコン、右上に「検索ツール」があります。道具の名前を検索ツールに打つと、すぐ出てきます。</div></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="1">切り抜き<span class="heading-note">（主役だけを切り抜く）</span></h2>
+<p class="what">人や動物など、主役だけを背景から切り抜けます。切り抜いたものは、シールのように画面に貼れます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>動画を選ぶ</b>タイムラインの動画をタップ（Mac はクリック）します。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>「切り抜き」を開く</b><span class="setting-path">スマホ：下の道具を横に流す → 切り抜き<br>Mac：検索ツールに「切り抜き」</span></div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>主役をタップする</b>切り抜きたいもの（犬・人など）をタップ（Mac はクリック）すると、まわりに線が出て選ばれます。動画の間ずっと追いかけるときは「オブジェクトをトラッキング」を押します。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>きれいに抜くコツ</b>主役と背景の色がちがう場面ほど、きれいに抜けます。余計な所まで選ばれたら、Mac は ⌘ を押しながらクリックすると外せます。</div></div>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>主役だけが白いふちで囲まれて、背景から浮いて見えた</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="2">無音カット<span class="heading-note">（しゃべってない「間」を消す）</span></h2>
+<p class="what">しゃべっていない静かな部分を見つけて、まとめて切ってくれます。しゃべり動画のテンポが、一気に良くなります。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>しゃべっている動画を選ぶ</b>声の入った動画をタップ（Mac はクリック）します。</div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>「無音部分をカット」を押す</b><span class="setting-path">スマホ：下の道具を横に流す → 無音部分をカット<br>Mac：検索ツールに「無音」→ 無音部分をカット</span>「無音部分を特定しています…」と出るので、少し待ちます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>できあがりを見る</b>1本だった動画が、いくつかに分かれて短くなります。リールの例では、16秒の動画が5秒になりました。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>切りすぎたら</b>戻す（↺）ボタンで元に戻せます。わざと「間」を残したい所は、あとで帯の端を引っぱってのばせます。</div></div>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>タイムラインの帯が短くなって、いくつかに分かれた</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="3">自動字幕<span class="heading-note">（しゃべった言葉が字幕になる）</span></h2>
+<p class="what">動画の声を聞き取って、字幕を自動で付けてくれます。字幕の見た目（色・形）も選べます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>「キャプション」を開く</b><span class="setting-path">スマホ：下の道具 → キャプション<br>Mac：左の「CC」のアイコン</span></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>「キャプションを生成」を押す</b>「話されている言語」は「自動検出」のままで大丈夫です（うまく出ないときは日本語を選ぶ）。少し待つと、字幕がずらっと入ります。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>見た目を選ぶ・まちがいを直す</b>スタイルを選ぶと、全部の字幕の見た目が一度に変わります。聞きまちがいは、字幕をタップして打ち直せます。</div></div>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>動画を再生すると、しゃべりに合わせて字幕が出た</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="4">インスタの音楽<span class="heading-note">（流行りの曲がすぐ使える）</span></h2>
+<p class="what">インスタのリールで使われている曲を、そのまま動画に入れられます。「トレンド」を見ると、今どの曲が何本のリールで使われているかも分かります。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>「音源」を開く</b><span class="setting-path">スマホ：下の道具 → 音源<br>Mac：左の「♪」のアイコン</span></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>タブで探す</b>「おすすめ」「トレンド」「オリジナル音源」「使用料無料」に分かれています。曲の名前で検索もできます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>押して入れる</b>曲を押すと試し聞きでき、追加すると動画の下に音の帯が入ります。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>気をつけること</b>曲によっては、使える長さや場所が決まっていることがあります。仕事の宣伝に使うときは「使用料無料」のタブの曲が安心です。</div></div>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>動画の下に、曲の帯が入った</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
+</section>
+
+<section class="steps-section tool">
+<h2 data-n="5">インスタに直接投稿<span class="heading-note">（書き出してすぐ出せる）</span></h2>
+<p class="what">できた動画を、保存して入れ直さなくても、そのままインスタに出せます。</p>
+<div class="step"><div class="num">1</div><div class="step-content"><b>書き出す</b><span class="setting-path">スマホ：右上の「次へ」<br>Mac：右上の「エクスポート」</span></div></div>
+<div class="step"><div class="num">2</div><div class="step-content"><b>Instagram のボタンを押す</b>Mac は書き出しが終わると「シェアできます」と出るので、「Instagramでシェア」を押します。スマホは、次の画面でインスタへのシェアを選びます。</div></div>
+<div class="step"><div class="num">3</div><div class="step-content"><b>いつもの投稿画面で仕上げる</b>キャプションやカバーを入れて、最後にシェアを押すと投稿されます。</div></div>
+<div class="step"><div class="num">!</div><div class="step-content"><b>練習のときは</b>シェアを押すと公開されます。試すだけのときは、最後のシェアを押す前に戻ってください。</div></div>
+<div class="kit-done"><p class="kit-signal"><b>できた合図：</b>「シェアできます」の画面に、Instagram のボタンが出た</p><button type="button" class="done-btn" aria-pressed="false">できた！</button></div>
+</section>
+
+<div class="card">
+<b>うまくいかないときは</b><br>
+<span class="summary-items"><span class="summary-item">① Edits を最新にする（App Store・Mac App Store でアップデート）</span><span class="summary-separator" aria-hidden="true">　</span><span class="summary-item">② 道具が見つからないときは、Mac は検索ツールに名前を打つ。スマホは下の道具を最後まで横に流す</span></span>
+</div>
+
+<p class="small">※ 2026年11月13日時点の Edits（iPhone 版・Mac 版）で確かめた手順です。アプリの更新で、名前や場所が変わることがあります。<br>
+※ このページは @f_ai_fusion（えふ。｜AI初心者フクロウ先生）の特典ページです。</p>
+</div>
+<p class="toast" id="toast" role="status" aria-live="polite"></p>
+<script src="kit.js"></script>
+</body>
+</html>
